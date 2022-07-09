@@ -12,12 +12,12 @@ all_users = []
 money = []
 loan_taken = {}
 class Starting_money:
-    def add_user(noofpeopleingame):
-        for i in range(noofpeopleingame):
+    def add_user(self):
+        for _ in range(self):
             name = input(colored("Enter the name of the player: ","yellow")).lower() # .lower() is used to make the name of the user in lower case
             all_users.append(name) # appending the name of the user to the list   
-    def add_money(noofpeopleingame):
-        for i in range(noofpeopleingame):  # noofpeopleingame is the number of players in the game
+    def add_money(self):
+        for _ in range(self):
             money.append(1500)         # adding money to the index of players in another array 
     def generate_loan_dict():
         for i in range(len(all_users)): # len(all_users) is the number of players in the game
@@ -52,7 +52,7 @@ class main_bank:
         money[user_name_index] += ammount_to_take_loan #adding the amount to the user to take loan from 
         loan_taken[user] = ammount_to_take_loan  + no_of_rounds * 100 #adding the loan taken to the dictionary
         cprint("Money added successfully","green") #printing the amount added
-        cprint(f"Current balance of {user}: "+ str(money[user_name_index]),"blue") #printing the balance of the user to take loan from
+        cprint(f"Current balance of {user}: {str(money[user_name_index])}", "blue")
         cprint(f"{user} will have to pay ${loan_taken[user]} to end the loan","red") #printing the loan taken from the dictionary
         
     def add_money():
@@ -61,16 +61,16 @@ class main_bank:
         user_name_index = all_users.index(user) #index of the user to add money to
         money[user_name_index] += ammount_to_add #adding the amount to the user to add money to
         cprint("Money added successfully","red") #printing the amount added
-        cprint(f"Current balance of {user} is "+ str(money[user_name_index]),"cyan") #printing the balance of the user to add money to
+        cprint(f"Current balance of {user} is {str(money[user_name_index])}", "cyan")
     
     def pay_loan():
-        user = input(colored("Enter the name of the user who will pay the loan : ","cyan")).lower() 
+        user = input(colored("Enter the name of the user who will pay the loan : ","cyan")).lower()
         ammount_to_pay_loan = int(input(colored("Enter the amount of the loan you wanna pay: ","red")))
         user_name_index = all_users.index(user)#amount to pay loan
         loan_taken[user] = loan_taken.get(user) - ammount_to_pay_loan
         money[user_name_index] -= ammount_to_pay_loan #deducting the loan taken from the dictionary
         cprint(f"{user} will have to pay ${loan_taken[user]}","cyan") #printing the loan taken from the dictionary
-        cprint(f"Current balance of {user}: " + str(money[user_name_index]),"blue") #printing the balance of the user to pay loan
+        cprint(f"Current balance of {user}: {str(money[user_name_index])}", "blue")
         
     def show_money():
         for i in range(len(all_users)):
